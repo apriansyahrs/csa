@@ -22,8 +22,8 @@ return [
 
     /** Icons to use for navigation (if enabled) and pills */
     'icons' => [
-        'navigation' => 'heroicon-o-cpu-chip',
-        'exception' => 'heroicon-o-cpu-chip',
+        'navigation' => 'heroicon-o-exclamation-triangle',
+        'exception' => 'heroicon-o-exclamation-triangle',
         'headers' => 'heroicon-o-arrows-right-left',
         'cookies' => 'heroicon-o-circle-stack',
         'body' => 'heroicon-s-code-bracket',

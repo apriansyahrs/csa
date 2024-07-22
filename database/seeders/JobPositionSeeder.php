@@ -1,0 +1,120 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\JobPosition;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class JobPositionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $positions = [
+            ['name' => 'DRIVER'],
+            ['name' => 'GADGET SPECIALIST LEADER (WJ1)'],
+            ['name' => 'MT WAREHOUSE STAFF'],
+            ['name' => 'MT FINANCE STAFF E-COMMERCE'],
+            ['name' => 'AREA SALES COORDINATOR REALME'],
+            ['name' => 'ADMIN PROGRAM'],
+            ['name' => 'SALES ASSOCIATE'],
+            ['name' => 'STAFF ADMIN LOGISTIK'],
+            ['name' => 'MT SALES TECNO'],
+            ['name' => 'STAFF WAREHOUSE'],
+            ['name' => 'OFFICE BOY'],
+            ['name' => 'STAFF AR'],
+            ['name' => 'CUSTOMER SERVICE'],
+            ['name' => 'GADGET SPECIALIST (WJ2)'],
+            ['name' => 'MT SALES ZTE'],
+            ['name' => 'HEAD STORE (CJ1)'],
+            ['name' => 'TUKANG KEMASAN'],
+            ['name' => 'CHIEF SALES OFFICER'],
+            ['name' => 'LEGAL COORDINATOR'],
+            ['name' => 'GADGET SPECIALIST (WJ1)'],
+            ['name' => 'HEAD STORE (WJ1)'],
+            ['name' => 'LEADER SHOWROOM'],
+            ['name' => 'Management Trainee Production'],
+            ['name' => 'MT - AREA SALES MANAGER ZTE'],
+            ['name' => 'TELEMARKETING BIG 1'],
+            ['name' => 'SECURITY'],
+            ['name' => 'CHIEF INTERNAL AUDIT'],
+            ['name' => 'RELATIONSHIP OFFICER'],
+            ['name' => 'STAFF INTERNAL AUDIT MKLI'],
+            ['name' => 'MT TAX SUPERVISOR'],
+            ['name' => 'DESIGN GRAFIS MKLI'],
+            ['name' => 'AUDIT STOCK OPNAME & VISIBILITY'],
+            ['name' => 'MT SUPPLY CHAIN & TRANSLATOR'],
+            ['name' => 'KEPALA GUDANG'],
+            ['name' => 'DRIVER LOGISTIK'],
+            ['name' => 'AREA SALES MANAGER REALME'],
+            ['name' => 'CSO & COO'],
+            ['name' => 'STAFF PAJAK'],
+            ['name' => 'PJS MANAGER USER SYSTEM'],
+            ['name' => 'BUDGET & FINANCE CONTROL'],
+            ['name' => 'REGIONAL COORDINATOR'],
+            ['name' => 'AREA COORDINATOR O2O'],
+            ['name' => 'HRD KOORDINATOR'],
+            ['name' => 'STAFF IT RISM & MKLI'],
+            ['name' => 'HCM BUSINESS PARTNER'],
+            ['name' => 'PROJECT DIRECTOR'],
+            ['name' => 'GADGET SPECIALIST (CJ1)'],
+            ['name' => 'BUSINESS DEVELOPMENT MANAGER'],
+            ['name' => 'RELATIONSHIP MANAGER'],
+            ['name' => 'CUSTOMER SERVICE KOORDINATOR'],
+            ['name' => 'PRODUK KREDIT PAJAK & REVENUE'],
+            ['name' => 'HEAD FINANCE ACCOUNTING & TAX'],
+            ['name' => 'SUPPLY CHAIN SUPERVISOR'],
+            ['name' => 'INTERNAL AUDITOR'],
+            ['name' => 'KASIR (CJ1)'],
+            ['name' => 'HRD STAFF'],
+            ['name' => 'STAFF MARKETING'],
+            ['name' => 'STAFF IT SUPPORT'],
+            ['name' => 'COORDINATOR PROCUREMENT'],
+            ['name' => 'GENERAL AFFAIR ENGINEER'],
+            ['name' => 'ADMIN DATA SUPPORT TECNO'],
+            ['name' => 'Data Analyst'],
+            ['name' => 'FIELD INTERNAL AUDIT MKLI'],
+            ['name' => 'COORDINATOR FINANCE'],
+            ['name' => 'TEAM LEADER ACCOUNTING'],
+            ['name' => 'MT HEAD STORE'],
+            ['name' => 'LEADER REFUND & PROGRAM'],
+            ['name' => 'AUDIT FIELD TEAM LEADER'],
+            ['name' => 'ACCOUNT PAYABLE RISM & MKLI'],
+            ['name' => 'GADGET SPECIALIST (WJ4)'],
+            ['name' => 'MANAGER RETAIL AUTO EV'],
+            ['name' => 'SALES AREA ITEL REALME'],
+            ['name' => 'ORGANIZATION DEVELOPMENT'],
+            ['name' => 'GENERAL AFFAIR MKLI'],
+            ['name' => 'ADMIN PEMBELIAN'],
+            ['name' => 'DESIGN CREATOR'],
+            ['name' => 'GENERAL MANAGER ZTE'],
+            ['name' => 'CASHIER OFFICER (WJ4)'],
+            ['name' => 'RETAIL STORE COORDINATOR (CJ1)'],
+            ['name' => 'TEAM LEADER OFFLINE'],
+            ['name' => 'IT Support Afiliasi'],
+            ['name' => 'STAFF INTERNAL AUDIT'],
+            ['name' => 'BUSINESS DEVELOPMENT LEADER'],
+            ['name' => 'STAFF PURCHASING (2)'],
+            ['name' => 'ADMIN SOCMED'],
+            ['name' => 'STAFF KPI'],
+            ['name' => 'KEPALA GUDANG AKSESORIS'],
+            ['name' => 'IT SUPPORT COORDINATOR'],
+            ['name' => 'GADGET SPECIALIST LEADER (WJ3)'],
+            ['name' => 'SUPERVISOR E-COMMERCE'],
+            ['name' => 'GENERAL AFFAIR COORDINATOR'],
+            ['name' => 'FINANCE & ACCOUNTING MANAGER'],
+            ['name' => 'RETAIL STORE COORDINATOR (WJ2)'],
+            ['name' => 'Asst. Sales Manager'],
+            ['name' => 'LEADER WAREHOUSE DAN LOGISTIK'],
+            ['name' => 'RETAIL STORE MANAGER'],
+            ['name' => 'FINANCE ACCOUNTING TAX MANAGER'],
+        ];
+
+        foreach ($positions as $position) {
+            JobPosition::create($position);
+        }
+    }
+}

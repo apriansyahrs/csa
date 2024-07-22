@@ -29,10 +29,19 @@ class BusinessUnitResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('code')->required(),
                 TextInput::make('name')->required(),
                 Select::make('color')
                     ->label('Color')
-                    ->options(BusinessUnit::COLORS)
+                    ->allowHtml()
+                    ->options(
+                        collect(BusinessUnit::COLORS)->mapWithKeys(static fn ($label, $key) => [
+                            $key => "<span class='flex items-center gap-x-4'>
+                        <span class='rounded-full w-4 h-4' style='background:" . BusinessUnit::getColorRgb($key) . "'></span>
+                        <span>" . $label . '</span>
+                        </span>',
+                        ])->toArray()
+                    )
                     ->required(),
             ]);
     }

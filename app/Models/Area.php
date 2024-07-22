@@ -14,6 +14,11 @@ class Area extends Model
         'name',
     ];
 
+    public function user(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function division(): HasMany
     {
         return $this->hasMany(Division::class);

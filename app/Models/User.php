@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -26,8 +27,15 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'username',
         'email',
-        'password',
+        'mobile_phone',
+        'business_unit_id',
+        'area_id',
+        'division_id',
+        'job_level_id',
+        'job_position_id',
+        'approval_id',
         'email_verified_at',
+        'password',
     ];
 
     /**
@@ -46,9 +54,40 @@ class User extends Authenticatable implements FilamentUser
      * @var array<string, string>
      */
     protected $casts = [
+        'business_unit_id' => 'integer',
+        'area_id' => 'integer',
+        'division_id' => 'integer',
+        'joblevel_id' => 'integer',
+        'jobposition_id' => 'integer',
+        'approval_id' => 'integer',
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function businessUnit(): BelongsTo
+    {
+        return $this->belongsTo(BusinessUnit::class);
+    }
+
+    public function area(): BelongsTo
+    {
+        return $this->belongsTo(Area::class);
+    }
+
+    public function division(): BelongsTo
+    {
+        return $this->belongsTo(Division::class);
+    }
+
+    public function jobLevel(): BelongsTo
+    {
+        return $this->belongsTo(JobLevel::class);
+    }
+
+    public function jobPosition(): BelongsTo
+    {
+        return $this->belongsTo(JobPosition::class);
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
