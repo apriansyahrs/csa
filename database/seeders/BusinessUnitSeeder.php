@@ -14,17 +14,17 @@ class BusinessUnitSeeder extends Seeder
     public function run(): void
     {
         $units = [
-            ['code' => 'CTS', 'name' => 'CV Top Selular', 'color' => null],
-            ['code' => 'CCS', 'name' => 'CV Complete Selular', 'color' => null],
-            ['code' => 'CMT', 'name' => 'CV MAJU TECNOLOGI', 'color' => null],
-            ['code' => 'PMK', 'name' => 'PT. MAJU KENDARAAN LISTRIK INDONESIA', 'color' => null],
-            ['code' => 'PMS', 'name' => 'PT Media Selular Indonesia', 'color' => null],
-            ['code' => 'PRI', 'name' => 'PT. RETAIL INDONESIA SELALU MAJU', 'color' => null],
-            ['code' => 'CIM', 'name' => 'CV Inspirasi Mulia Sejahtera', 'color' => null],
-            ['code' => 'A', 'name' => 'Amazy', 'color' => null],
-            ['code' => 'TMA', 'name' => 'Toko Mas An An', 'color' => null],
-            ['code' => 'M', 'name' => 'MOMOYO', 'color' => null],
-            ['code' => 'CBM', 'name' => 'CV Berkarya Maju Sejahtera', 'color' => null],
+            ['code' => 'TOP', 'name' => 'CV Top Selular', 'color' => null],
+            ['code' => 'CS', 'name' => 'CV Complete Selular', 'color' => null],
+            ['code' => 'MAJU', 'name' => 'CV Maju Tecnologi', 'color' => null],
+            ['code' => 'MKLI', 'name' => 'PT. Maju Kendaraan Listrik Indonesia', 'color' => null],
+            ['code' => 'MSI', 'name' => 'PT Media Selular Indonesia', 'color' => null],
+            ['code' => 'RISM', 'name' => 'PT. Retail Indonesia Selalu Maju', 'color' => null],
+            ['code' => 'IMS', 'name' => 'CV Inspirasi Mulia Sejahtera', 'color' => null],
+            ['code' => 'AMAZY', 'name' => 'Amazy', 'color' => null],
+            ['code' => 'TKANAN', 'name' => 'Toko Mas An An', 'color' => null],
+            ['code' => 'MOMOYO', 'name' => 'Momoyo', 'color' => null],
+            ['code' => 'BMS', 'name' => 'CV Berkarya Maju Sejahtera', 'color' => null],
             ['code' => 'CC', 'name' => 'CV Celine', 'color' => null],
         ];
 

@@ -25,4 +25,9 @@ class Division extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function submissionCategory(): HasMany
+    {
+        return $this->hasMany(SubmissionCategory::class);
+    }
 }

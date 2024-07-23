@@ -34,8 +34,19 @@ class DatabaseSeeder extends Seeder
         Artisan::call('shield:super-admin', ['--user' => 1]);
         Artisan::call('shield:generate --all');
 
-        $this->call(BusinessUnitSeeder::class);
-        $this->call(JobPositionSeeder::class);
-        $this->call(JobLevelSeeder::class);
+        $this->call([
+            // managament master
+            BusinessUnitSeeder::class,
+            AreaSeeder::class,
+            DivisionSeeder::class,
+            JobPositionSeeder::class,
+            JobLevelSeeder::class,
+
+            // submission master
+            ItemUnitTypeSeeder::class,
+            ItemCategorySeeder::class,
+            SubmissionCategorySeeder::class,
+            ItemSeeder::class,
+        ]);
     }
 }
