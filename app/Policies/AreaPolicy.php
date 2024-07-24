@@ -63,7 +63,7 @@ class AreaPolicy
      */
     public function forceDelete(User $user, Area $area): bool
     {
-        return $user->can('force_delete_area');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class AreaPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_area');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class AreaPolicy
      */
     public function restore(User $user, Area $area): bool
     {
-        return $user->can('restore_area');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class AreaPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_area');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class AreaPolicy
      */
     public function replicate(User $user, Area $area): bool
     {
-        return $user->can('replicate_area');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class AreaPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_area');
+        return $user->can('{{ Reorder }}');
     }
 }

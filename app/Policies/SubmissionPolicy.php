@@ -63,7 +63,7 @@ class SubmissionPolicy
      */
     public function forceDelete(User $user, Submission $submission): bool
     {
-        return $user->can('force_delete_submission');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class SubmissionPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_submission');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class SubmissionPolicy
      */
     public function restore(User $user, Submission $submission): bool
     {
-        return $user->can('restore_submission');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class SubmissionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_submission');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class SubmissionPolicy
      */
     public function replicate(User $user, Submission $submission): bool
     {
-        return $user->can('replicate_submission');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class SubmissionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_submission');
+        return $user->can('{{ Reorder }}');
     }
 }

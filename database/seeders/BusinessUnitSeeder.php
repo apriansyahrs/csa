@@ -25,7 +25,10 @@ class BusinessUnitSeeder extends Seeder
             ['code' => 'TKANAN', 'name' => 'Toko Mas An An', 'color' => null],
             ['code' => 'MOMOYO', 'name' => 'Momoyo', 'color' => null],
             ['code' => 'BMS', 'name' => 'CV Berkarya Maju Sejahtera', 'color' => null],
-            ['code' => 'CC', 'name' => 'CV Celine', 'color' => null],
+
+            ['code' => '-', 'name' => '-', 'color' => null],
+            ['code' => 'CMULIA', 'name' => 'CMULIA', 'color' => null],
+            ['code' => 'COMPLETEME', 'name' => 'COMPLETEME', 'color' => null],
         ];
 
         foreach ($units as $unit) {

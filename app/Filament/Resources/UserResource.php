@@ -41,40 +41,40 @@ class UserResource extends Resource
                     ->schema([
                         // Kiri
                         Grid::make(2) // Dua kolom di Kiri
-                        ->schema([
-                            Section::make('Personal Information')
-                                ->schema([
-                                    TextInput::make('name')
-                                        ->label('Full Name')
-                                        ->required()
-                                        ->maxLength(255),
-                                    TextInput::make('username')
-                                        ->required()
-                                        ->maxLength(255),
-                                    TextInput::make('email')
-                                        ->required()
-                                        ->maxLength(255),
-                                    TextInput::make('mobile_phone')
-                                        ->label('Mobile Phone')
-                                        ->required()
-                                        ->maxLength(255),
-                                ])
-                                ->columns(2), // Dua kolom di Kiri
+                            ->schema([
+                                Section::make('Personal Information')
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->label('Full Name')
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('username')
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('email')
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('mobile_phone')
+                                            ->label('Mobile Phone')
+                                            ->required()
+                                            ->maxLength(255),
+                                    ])
+                                    ->columns(2), // Dua kolom di Kiri
 
-                            Section::make('Security Information')
-                                ->schema([
-                                    TextInput::make('password')
-                                        ->password()
-                                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                                        ->dehydrated(fn ($state) => filled($state))
-                                        ->required(fn (string $context): bool => $context === 'create')
-                                        ->maxLength(255),
-                                    DateTimePicker::make('email_verified_at')
-                                        ->label('Email Verified At'),
-                                ])
-                                ->columns(2), // Dua kolom di Kiri
-                        ])
-                        ->columnSpan(2), // Menetapkan ini ke kolom 2 (Kiri)
+                                Section::make('Security Information')
+                                    ->schema([
+                                        TextInput::make('password')
+                                            ->password()
+                                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                                            ->dehydrated(fn ($state) => filled($state))
+                                            ->required(fn (string $context): bool => $context === 'create')
+                                            ->maxLength(255),
+                                        DateTimePicker::make('email_verified_at')
+                                            ->label('Email Verified At'),
+                                    ])
+                                    ->columns(2), // Dua kolom di Kiri
+                            ])
+                            ->columnSpan(2), // Menetapkan ini ke kolom 2 (Kiri)
 
                         // Kanan
                         Grid::make(1) // Satu kolom di kanan
@@ -130,7 +130,7 @@ class UserResource extends Resource
                                             })
                                             ->searchable()
                                             ->required(),
-                                            Select::make('job_level_id')
+                                        Select::make('job_level_id')
                                             ->label('Job Level')
                                             ->options(JobLevel::all()->pluck('name', 'id'))
                                             ->createOptionForm([
@@ -183,8 +183,16 @@ class UserResource extends Resource
                     ->searchable(),
                 TextColumn::make('jobLevel.name')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->searchable(),
+                TextColumn::make('is_active')
+                    ->label('Active')
+                    ->formatStateUsing(fn ($state) => $state ? 'Active' : 'Inactive')
+                    ->icon(fn ($state) => $state ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
+                    ->iconColor(fn ($state) => $state ? 'success' : 'danger')
+                    ->action(function ($record) {
+                        $record->update([
+                            'is_active' => !$record->is_active,
+                        ]);
+                    }),
             ])
             ->filters([
                 //
@@ -197,7 +205,7 @@ class UserResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->deferLoading();
+            ->paginated([10, 25, 50, 100]);
     }
 
     public static function getRelations(): array
@@ -215,4 +223,5 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
+
 }

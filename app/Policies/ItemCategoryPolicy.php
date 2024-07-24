@@ -63,7 +63,7 @@ class ItemCategoryPolicy
      */
     public function forceDelete(User $user, ItemCategory $itemCategory): bool
     {
-        return $user->can('force_delete_item::category');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class ItemCategoryPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_item::category');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class ItemCategoryPolicy
      */
     public function restore(User $user, ItemCategory $itemCategory): bool
     {
-        return $user->can('restore_item::category');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class ItemCategoryPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_item::category');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class ItemCategoryPolicy
      */
     public function replicate(User $user, ItemCategory $itemCategory): bool
     {
-        return $user->can('replicate_item::category');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class ItemCategoryPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_item::category');
+        return $user->can('{{ Reorder }}');
     }
 }

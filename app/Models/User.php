@@ -25,6 +25,7 @@ class User extends Authenticatable implements FilamentUser
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'username',
         'email',
@@ -37,6 +38,7 @@ class User extends Authenticatable implements FilamentUser
         'approval_id',
         'email_verified_at',
         'password',
+        'is_active',
     ];
 
     /**
@@ -97,6 +99,6 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->hasVerifiedEmail();
+        return $this->is_active;
     }
 }

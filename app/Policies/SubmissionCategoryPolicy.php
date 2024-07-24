@@ -63,7 +63,7 @@ class SubmissionCategoryPolicy
      */
     public function forceDelete(User $user, SubmissionCategory $submissionCategory): bool
     {
-        return $user->can('force_delete_submission::category');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class SubmissionCategoryPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_submission::category');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class SubmissionCategoryPolicy
      */
     public function restore(User $user, SubmissionCategory $submissionCategory): bool
     {
-        return $user->can('restore_submission::category');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class SubmissionCategoryPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_submission::category');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class SubmissionCategoryPolicy
      */
     public function replicate(User $user, SubmissionCategory $submissionCategory): bool
     {
-        return $user->can('replicate_submission::category');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class SubmissionCategoryPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_submission::category');
+        return $user->can('{{ Reorder }}');
     }
 }

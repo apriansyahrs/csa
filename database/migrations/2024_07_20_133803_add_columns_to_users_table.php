@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('job_level_id')->after('division_id')->nullable();
             $table->unsignedBigInteger('job_position_id')->after('job_level_id')->nullable();
             $table->unsignedBigInteger('approval_id')->after('job_position_id')->nullable();
+            $table->boolean('is_active')->after('approval_id')->default(true);
 
             // Add foreign key constraints
             $table->foreign('business_unit_id')->references('id')->on('business_units')->onDelete('set null');
@@ -44,6 +45,7 @@ return new class extends Migration
                 'job_level_id',
                 'job_position_id',
                 'approval_id',
+                'is_active',
             ]);
         });
     }

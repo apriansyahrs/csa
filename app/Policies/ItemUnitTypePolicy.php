@@ -63,7 +63,7 @@ class ItemUnitTypePolicy
      */
     public function forceDelete(User $user, ItemUnitType $itemUnitType): bool
     {
-        return $user->can('force_delete_item::unit::type');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class ItemUnitTypePolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_item::unit::type');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class ItemUnitTypePolicy
      */
     public function restore(User $user, ItemUnitType $itemUnitType): bool
     {
-        return $user->can('restore_item::unit::type');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class ItemUnitTypePolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_item::unit::type');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class ItemUnitTypePolicy
      */
     public function replicate(User $user, ItemUnitType $itemUnitType): bool
     {
-        return $user->can('replicate_item::unit::type');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class ItemUnitTypePolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_item::unit::type');
+        return $user->can('{{ Reorder }}');
     }
 }

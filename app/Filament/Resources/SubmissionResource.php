@@ -4,10 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubmissionResource\Pages;
 use App\Filament\Resources\SubmissionResource\RelationManagers;
+use App\Models\Item;
 use App\Models\Submission;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -19,6 +23,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionResource extends Resource
 {
@@ -30,49 +35,56 @@ class SubmissionResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('code')
-                    ->label('Code')
-                    ->nullable(),
-                Select::make('user_id')
-                    ->label('User')
-                    ->relationship('user', 'name')
-                    ->required(),
-                DateTimePicker::make('date')
-                    ->label('Date')
-                    ->required(),
-                TextInput::make('total_cost')
-                    ->label('Total Cost')
-                    ->numeric()
-                    ->required(),
-                TextInput::make('status_po')
-                    ->label('Status PO')
-                    ->nullable(),
-                TextInput::make('po_number')
-                    ->label('PO Number')
-                    ->nullable(),
-                TextInput::make('status_client')
-                    ->label('Status Client')
-                    ->default(0),
-                Select::make('submission_category_id')
-                    ->label('Submission Category')
-                    ->relationship('submissionCategory', 'name')
-                    ->required(),
-                FileUpload::make('request_file_1')
-                    ->label('Request File 1')
-                    ->nullable(),
-                FileUpload::make('request_file_2')
-                    ->label('Request File 2')
-                    ->nullable(),
-                FileUpload::make('approved_file')
-                    ->label('Approved File')
-                    ->nullable(),
-                Textarea::make('notes')
-                    ->label('Notes')
-                    ->nullable(),
-                Textarea::make('user_notes')
-                    ->label('User Notes')
-                    ->nullable(),
-            ]);
+                Section::make('File Uploads')
+                    ->columnSpan(1)
+                    ->schema([
+                        FileUpload::make('request_file_1')
+                            ->label('Upload bukti telah disetujui Atasan (jpg, jpeg, png, pdf)')
+                            ->nullable(),
+                        FileUpload::make('request_file_2')
+                            ->label('Upload bukti telah disetujui COO (jpg, jpeg, png, pdf)')
+                            ->nullable(),
+                    ])->columns(1),
+                Grid::make()
+                    ->schema([
+                        Select::make('submission_category_id')
+                            ->label('Submission Category')
+                            ->relationship('submissionCategory', 'name')
+                            ->required()
+                            ->reactive() // Make the field reactive
+                            ->afterStateUpdated(fn (callable $set) => $set('item_id', null))
+                            ->columnSpan(3),
+
+                        Repeater::make('details')
+                            ->columnSpan(3)
+                            ->schema([
+                                Select::make('item_id')
+                                    ->label('Item')
+                                    ->options(function (callable $get) {
+                                        $categoryId = $get('../../submission_category_id');
+                                        if ($categoryId) {
+                                            return Item::where('item_category_id', $categoryId)->pluck('name', 'id');
+                                        }
+                                        return Item::all()->pluck('name', 'id');
+                                    })
+                                    ->searchable()
+                                    ->required(),
+                                TextInput::make('qty_remaining')
+                                    ->label('Quantity Remaining')
+                                    ->numeric()
+                                    ->required(),
+                                TextInput::make('qty_submission')
+                                    ->label('Quantity Submission')
+                                    ->numeric()
+                                    ->nullable(),
+                                TextInput::make('description')
+                                    ->label('Description')
+                                    ->nullable(),
+                            ])
+                            ->columns(4),
+                    ])
+                    ->columnSpan(3),
+            ])->columns(4);
     }
 
     public static function table(Table $table): Table
@@ -191,7 +203,7 @@ class SubmissionResource extends Resource
                 ]),
             ])
             ->defaultSort('date', 'desc')
-            ->deferLoading();
+            ->paginated([10, 25, 50, 100]);
     }
 
     public static function getRelations(): array
@@ -208,5 +220,25 @@ class SubmissionResource extends Resource
             'create' => Pages\CreateSubmission::route('/create'),
             'edit' => Pages\EditSubmission::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->where(function ($query) {
+                // Display all tickets to Super Admin
+                if (auth()->user()->hasRole('super_admin')) {
+                    return;
+                }
+                // if (auth()->user()->hasRole('Admin Unit')) {
+                //     $query->where('tickets.unit_id', auth()->user()->unit_id)->orWhere('tickets.owner_id', auth()->id());
+                // } elseif (auth()->user()->hasRole('Staff Unit')) {
+                //     $query->where('tickets.responsible_id', auth()->id())->orWhere('tickets.owner_id', auth()->id());
+                // } else {
+                //     $query->where('tickets.owner_id', auth()->id());
+                // }
+
+                $query->where('submissions.user_id', auth()->id());
+            });
     }
 }

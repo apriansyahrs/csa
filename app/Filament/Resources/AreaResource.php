@@ -47,8 +47,7 @@ class AreaResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->deferLoading();
+            ]);
     }
 
     public static function getPages(): array

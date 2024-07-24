@@ -10,7 +10,7 @@ class SubmissionDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'submission_id', 'item_id', 'qty_submission', 'qty_approved', 'description'
+        'submission_id', 'item_id', 'qty_remaining', 'qty_submission', 'qty_approved', 'description'
     ];
 
     public function submission()

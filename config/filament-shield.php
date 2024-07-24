@@ -61,6 +61,7 @@ return [
 
         'pages' => [
             'Dashboard',
+            'Whats App',
         ],
 
         'widgets' => [

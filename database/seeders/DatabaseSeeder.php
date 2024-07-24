@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Submission;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ItemUnitTypeSeeder::class,
             ItemCategorySeeder::class,
             SubmissionCategorySeeder::class,
-            ItemSeeder::class,
+            SubmissionSeeder::class,
         ]);
     }
 }

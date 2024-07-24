@@ -63,7 +63,7 @@ class JobLevelPolicy
      */
     public function forceDelete(User $user, JobLevel $jobLevel): bool
     {
-        return $user->can('force_delete_job::level');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class JobLevelPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_job::level');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class JobLevelPolicy
      */
     public function restore(User $user, JobLevel $jobLevel): bool
     {
-        return $user->can('restore_job::level');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class JobLevelPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_job::level');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class JobLevelPolicy
      */
     public function replicate(User $user, JobLevel $jobLevel): bool
     {
-        return $user->can('replicate_job::level');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class JobLevelPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_job::level');
+        return $user->can('{{ Reorder }}');
     }
 }
