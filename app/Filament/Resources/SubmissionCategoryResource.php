@@ -20,8 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class SubmissionCategoryResource extends Resource
 {
     protected static ?string $model = SubmissionCategory::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Master Data';
 
     public static function form(Form $form): Form
     {
@@ -54,7 +54,8 @@ class SubmissionCategoryResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->deferLoading();
     }
 
     public static function getPages(): array

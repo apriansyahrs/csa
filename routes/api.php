@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/whatsapp-qr', function (Request $request) {
     $qr = $request->input('qr');
     if ($qr) {
-        Cache::put('whatsapp-qr', $qr, now()->addMinutes(1)); // Save Base64 encoded QR code in cache for 5 minutes
+        Cache::put('whatsapp-qr', $qr, now()->addMinutes(5)); // Save Base64 encoded QR code in cache for 5 minutes
         Log::info('QR Code stored in cache: ' . $qr);
     } else {
         Log::warning('No QR code received in request');
@@ -34,7 +34,7 @@ Route::post('/whatsapp-qr', function (Request $request) {
 Route::post('/whatsapp-status', function (Request $request) {
     $status = $request->input('status');
     if ($status) {
-        Cache::put('whatsapp-status', $status, now()->addMinutes(1)); // Save connection status in cache for 5 minutes
+        Cache::put('whatsapp-status', $status, now()->addMinutes(5)); // Save connection status in cache for 5 minutes
         Log::info('Connection status stored in cache: ' . $status);
     } else {
         Log::warning('No connection status received in request');

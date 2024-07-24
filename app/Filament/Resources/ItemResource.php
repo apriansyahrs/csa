@@ -20,8 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ItemResource extends Resource
 {
     protected static ?string $model = Item::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Master Data';
 
     public static function form(Form $form): Form
     {
@@ -75,7 +75,8 @@ class ItemResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->deferLoading();
     }
 
     public static function getPages(): array
