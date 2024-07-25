@@ -15,7 +15,6 @@ class WhatsApp extends Page
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Pengaturan';
-
     protected static string $view = 'filament.pages.whatsapp-qr-qrs';
 
     protected function getViewData(): array
