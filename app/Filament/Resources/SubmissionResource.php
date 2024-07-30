@@ -29,7 +29,7 @@ class SubmissionResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function form(Form $form): Form
     {
@@ -218,6 +218,7 @@ class SubmissionResource extends Resource
         return [
             'index' => Pages\ListSubmissions::route('/'),
             'create' => Pages\CreateSubmission::route('/create'),
+            'view' => Pages\ViewSubmission::route('/{record}'),
             'edit' => Pages\EditSubmission::route('/{record}/edit'),
         ];
     }

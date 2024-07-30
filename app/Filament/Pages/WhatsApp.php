@@ -13,7 +13,7 @@ class WhatsApp extends Page
 {
     use HasPageShield;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-oval-left';
     protected static ?string $navigationGroup = 'Pengaturan';
     protected static string $view = 'filament.pages.whatsapp-qr-qrs';
 

@@ -39,7 +39,7 @@ class UserImport implements ToCollection, WithHeadingRow
                     'area_id' => $area,
                     'division_id' => $division->id,
                     'approval_id' => $approval ? $approval->id : null,
-                    'password' => bcrypt($row['password']),
+                    'password' => $row['password'],
                 ]
             );
 

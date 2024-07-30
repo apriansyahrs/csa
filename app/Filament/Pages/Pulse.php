@@ -20,7 +20,7 @@ class Pulse extends Page
 {
     use HasPageShield;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-server-stack';
     protected static ?string $navigationGroup = 'Pengaturan';
     protected static string $view = 'vendor.pulse.dashboard';
 
