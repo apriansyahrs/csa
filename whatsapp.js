@@ -94,14 +94,14 @@ app.post('/send-message', async (req, res) => {
     console.log('Received send-message request:', req.body); // Add this line
 
     try {
-        await sock.sendMessage(formattedRecipient, { text: message });
+        const messageWithSignature = `${message}\n\n— Bot`; // Add the signature to the message
+        await sock.sendMessage(formattedRecipient, { text: messageWithSignature });
         res.json({ status: 'success', message: 'Message sent' });
     } catch (error) {
         console.error('Error sending message:', error);
         res.status(500).json({ status: 'error', message: 'Failed to send message' });
     }
 });
-
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
